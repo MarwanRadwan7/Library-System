@@ -1,0 +1,11 @@
+{%extends 'base.html'%} {%load static%} {% block 'title' %}Signup{% endblock %}
+{%block 'content' %}
+<br />
+<h1 class="form-title text-center">Signup</h1>
+
+<form action="" method="post" enctype="multipart/form-data">
+  {% csrf_token %} {{form}}
+  <button type="submit" class="btn btn-success">Signup</button>
+</form>
+<script src="{% static 'js/formScript.js' %}"></script>
+{% endblock %}

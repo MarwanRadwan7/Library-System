@@ -1,0 +1,25 @@
+{% extends 'base.html' %} {% load static %} {% block 'title' %} {{book.title}}
+{% endblock %} {% block 'content' %}
+
+<h2 class="form-title">Borrow: {{ book.title }}</h2>
+<form action="" method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+    <div class="mb-3">
+      <label for="borrow_period" class="form-label">Days you will need this book</label>
+      <input
+        type="number"
+        class="form-control"
+        id="borrow_period"
+        name="borrow_period"
+        aria-describedby="inputHelp"
+        required
+      />
+      <div id="inputHelp" class="form-text">
+        <spam style='color:red;'>*</span>This is required.
+      </div>
+    </div>
+   
+    <button type="submit" class="btn btn-success">Submit</button>
+</form>
+
+{% endblock %}

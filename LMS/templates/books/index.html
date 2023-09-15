@@ -1,0 +1,30 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.css' %}" />
+    <title>{% block 'title' %}Index{% endblock %}</title>
+  </head>
+  <body>
+    <nav class="nav">
+      <i class="fas fa-book-open"></i>
+    </nav>
+    <div class="container">
+      <div>
+        {% block 'content' %}
+        <p>HEllo</p>
+        {% endblock %}
+      </div>
+    </div>
+
+    <footer
+      class="blockquote-footer"
+      style="margin-top: 10px; text-align: center"
+    >
+      All Rights Reserved &copy; E-Library
+    </footer>
+    <script href="{% static 'bootstrap/js/bootstrap.js' %}"></script>
+  </body>
+</html>

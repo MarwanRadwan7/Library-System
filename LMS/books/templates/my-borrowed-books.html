@@ -1,0 +1,55 @@
+{% extends 'base.html' %} {% load static %} {% block 'title' %} My Books
+{%endblock %} {% block 'content' %} {% if books %}
+<h1 style="text-align: center">My Books</h1>
+<br />
+<div class="row">
+  {% for book in books %}
+  <div class="col-md-4">
+    <div class="card d-flex flex-column">
+      <img
+        class="card-img-top"
+        src="{{ book.get_image_url }}"
+        width="376"
+        height="500"
+        alt="Card image cap"
+      />
+      <div class="card-body">
+        <h5 class="card-title">{{ book.title }}</h5>
+        <p class="card-text text-truncate">{{ book.description }}</p>
+      </div>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">Pages: {{ book.pages }}</li>
+        <li class="list-group-item">Price: {{ book.price }}</li>
+        <li class="list-group-item">Category: {{ book.genre }}</li>
+      </ul>
+      <div class="card-body">
+        <li class="list-group-item">
+          <span style="color: red">Borrowed</span>
+        </li>
+        <li class="list-group-item" style="margin: 4px">
+          Return Date: {{ book.return_date }}
+        </li>
+        <a
+          href="{% url 'books:books.return' book.id %}"
+          class="btn btn-danger"
+          style="margin= 7px;"
+          >Return</a
+        >
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% else %}
+<div
+  class="container d-flex justify-content-center align-items-center"
+  style="min-height: 100vh"
+>
+  <div class="text-center">
+    <h2>There is no borrowed books right now 🤗</h2>
+    <a href="{% url 'books:books.available'%}" class="btn btn-success"
+      >Go To Available Books</a
+    >
+  </div>
+</div>
+{% endif %} {% endblock %}

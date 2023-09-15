@@ -1,0 +1,96 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.css' %}" />
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="{% static 'img/icons8-book-32.ico' %}"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+    <title>Library Management System</title>
+    <style>
+      body {
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        font-family: "Roboto", sans-serif;
+      }
+
+      #myVideo {
+        position: fixed;
+        right: 0;
+        bottom: 0;
+        min-width: 100%;
+        min-height: 100%;
+        z-index: -1;
+      }
+
+      .content {
+        text-align: center;
+        color: #fff;
+      }
+
+      .header {
+        font-size: 80px;
+        font-weight: bold;
+      }
+
+      .paragraph {
+        font-size: 36px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Video Background -->
+    <video autoplay muted loop id="myVideo">
+      <source src="{% static 'vid/background2.mp4' %}" type="video/mp4" />
+    </video>
+
+    <!-- Content -->
+    <!-- Content -->
+    <div class="content">
+      <div class="header">Library Management System</div>
+      <div class="paragraph">
+        Welcome to our library where you can borrow books in many fields and
+        return them anytime.
+      </div>
+
+      <!-- Bootstrap Buttons -->
+      <div class="mt-4">
+        <a
+          href="{% url 'books:books.index' %}"
+          class="btn btn-primary btn-lg me-3"
+          >Books</a
+        >
+        <a
+          href="{% url 'students:students.login' %}"
+          class="btn btn-secondary btn-lg me-3"
+          >Login</a
+        >
+        <a
+          href="{% url 'students:students.signup' %}"
+          class="btn btn-success btn-lg"
+          >Register</a
+        >
+      </div>
+    </div>
+
+    <script src="{% static 'bootstrap/js/bootstrap.js' %}"></script>
+  </body>
+</html>

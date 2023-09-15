@@ -1,0 +1,58 @@
+{% extends 'base.html' %} {% load static %} {% block 'title' %} All Available
+Books {% endblock %} {% block 'content' %} {% if books %}
+<h1 style="text-align: center">All Available Books</h1>
+<br />
+<div class="row">
+  {% for book in books %}
+  <div class="col-md-4">
+    <div class="card d-flex flex-column">
+      <img
+        class="card-img-top"
+        src="{{ book.get_image_url }}"
+        width="376"
+        height="500"
+        alt="Card image cap"
+      />
+      <div class="card-body">
+        <h5 class="card-title">{{ book.title }}</h5>
+        <p class="card-text text-truncate">{{ book.description }}</p>
+      </div>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">Pages: {{ book.pages }}</li>
+        <li class="list-group-item">Price: {{ book.price }}</li>
+        <li class="list-group-item">Category: {{ book.genre }}</li>
+        <li class="list-group-item">
+          <span style="color: green">Available</span>
+        </li>
+      </ul>
+      <div class="card-body">
+        {%if user.is_authenticated and not user.is_staff%}
+        <a
+          href="{% url 'books:books.borrow' book.id %}"
+          class="btn btn-success"
+          style="margin= 7px;"
+          >Borrow</a
+        >
+        {%endif%}
+        <a
+          href="{% url 'books:books.show' book.id %}"
+          class="btn btn-primary"
+          style="margin= 7px; !important"
+          >Show Details</a
+        >
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% else %}
+<div
+  class="container d-flex justify-content-center align-items-center"
+  style="min-height: 100vh"
+>
+  <div class="text-center">
+    <h2>No available books right now</h2>
+    <p>Please check back later 😞</p>
+  </div>
+</div>
+{%endif%} {% endblock %}

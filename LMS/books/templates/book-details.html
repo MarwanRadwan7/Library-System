@@ -1,0 +1,42 @@
+{% extends 'base.html' %} {% load static %} {% block 'title' %} {{book.title}}
+{% endblock %} {% block 'content' %}
+<br />
+<div class="container">
+  <div class="row">
+    <div class="col-md-4">
+      <img
+        src="{{ book.image.url }}"
+        class="img-fluid"
+        alt="{{ book.title }}"
+      />
+    </div>
+    <div class="col-md-8">
+      <h1>{{ book.title }}</h1>
+      <p><strong>Author:</strong> {{ book.author }}</p>
+      <p><strong>Description:</strong> {{ book.description }}</p>
+      <p><strong>Category:</strong> {{ book.genre }}</p>
+      <p><strong>Price:</strong> ${{ book.price }}</p>
+      {%if book.status_id == 1 %}
+      <p class="list-group-item">
+        <strong style="color: green">Available</strong>
+      </p>
+      {%endif%}
+      <br />
+      {%if user.is_authenticated and not user.is_staff%}
+      <a
+        href="{% url 'books:books.borrow' book.id %}"
+        class="btn btn-success"
+        style="margin= 7px;"
+        >Borrow</a
+      >
+      {%endif%}
+      {% if book.status_id == 2 %}
+      <p class="list-group-item">
+        <strong style="color: red">Borrowed</strong>
+        <p><strong>Return Date:</strong> {{ book.return_date }}</p>
+      </p>
+      {%endif%}
+    </div>
+  </div>
+</div>
+{% endblock %}

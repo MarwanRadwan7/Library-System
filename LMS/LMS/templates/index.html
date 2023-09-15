@@ -1,0 +1,39 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.css' %}" />
+    <title>{% block 'title' %}{% endblock %}</title>
+  </head>
+  <body>
+    <nav class="nav">
+      <i class="fas fa-book-open"></i>
+      <a class="nav-link" href="{% url 'admin:all_books' %}">ALL Books</a>
+      <a class="nav-link" href="{% url 'admin:all_students' %}">All Students</a>
+      <a class="nav-link" href="{% url 'admin:all_borrowed_books' %}"
+        >Borrowed Books</a
+      >
+
+      {% if not user.id %}
+      <a class="nav-link" href="{% url 'admin:admin.login' %}">Login</a>
+      <a class="nav-link" href="{% url 'admin:admin.signup' %}">Register</a>
+      {% else %}
+      <a class="nav-link" href="{% url 'admin:admin_dashboard' %}">Search</a>
+      <a class="nav-link" href="{% url 'admin:admin.logout' %}">Logout</a>
+      {% endif %}
+    </nav>
+    <div class="container">
+      <div>{% block 'content' %} {% endblock %}</div>
+    </div>
+
+    <footer
+      class="blockquote-footer"
+      style="margin-top: 10px; text-align: center"
+    >
+      All Rights Reserved &copy; E-Library
+    </footer>
+    <script href="{% static 'bootstrap/js/bootstrap.js' %}"></script>
+  </body>
+</html>
